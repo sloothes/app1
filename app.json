@@ -26,7 +26,7 @@
 		"5E90B25E-FD80-4DD9-910F-ADFE7535F7E1": [
 			{
 				"name": "background.js",
-				"source": "sceneBackground([\n\t\"https://i.imgur.com/v6bjQLb.jpg\", // \"posx.jpg\",\n\t\"https://i.imgur.com/lwrlr6P.jpg\", // \"negx.jpg\", \n\t\"https://i.imgur.com/kKUKBJg.jpg\", // \"posy.jpg\", \n\t\"https://i.imgur.com/N0oZlJR.jpg\", // \"negy.jpg\", \n\t\"https://i.imgur.com/x9q8z0K.jpg\", // \"posz.jpg\", \n\t\"https://i.imgur.com/HYcK7Ii.jpg\", // \"negz.jpg\"\n]);\n\nfunction sceneBackground( urls ){\n\tif (!scene || Number(THREE.REVISION) < 78) return;\n\tvar loader = new THREE.CubeTextureLoader();\n\tloader.load( urls, function(texture){\n\t\ttexture.name = \"BACKGROUND\";\n\t\tscene.background = texture;\n\t\tscene.background.needsUpdate = true;\n\t});\n}\n"
+				"source": "scene.remove( this );\n\nsceneBackground([\n\t\"https://i.imgur.com/v6bjQLb.jpg\", // \"posx.jpg\",\n\t\"https://i.imgur.com/lwrlr6P.jpg\", // \"negx.jpg\", \n\t\"https://i.imgur.com/kKUKBJg.jpg\", // \"posy.jpg\", \n\t\"https://i.imgur.com/N0oZlJR.jpg\", // \"negy.jpg\", \n\t\"https://i.imgur.com/x9q8z0K.jpg\", // \"posz.jpg\", \n\t\"https://i.imgur.com/HYcK7Ii.jpg\", // \"negz.jpg\"\n]);\n\nfunction sceneBackground( urls ){\n\tif (!scene || Number(THREE.REVISION) < 78) return;\n\tvar loader = new THREE.CubeTextureLoader();\n\tloader.load( urls, function(texture){\n\t\ttexture.name = \"BACKGROUND\";\n\t\tscene.background = texture;\n\t\tscene.background.needsUpdate = true;\n\t});\n}\n"
 			}]
 	},
 	"camera": {
@@ -45,7 +45,7 @@
 			"near": 0.1,
 			"far": 10000,
 			"focus": 10,
-			"aspect": 1.848623853211009,
+			"aspect": 1.9213349225268177,
 			"filmGauge": 35,
 			"filmOffset": 0
 		}
