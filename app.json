@@ -27,6 +27,15 @@
 			{
 				"name": "background.js",
 				"source": "scene.remove( this );\n\nsceneBackground([\n\t\"https://i.imgur.com/v6bjQLb.jpg\", // \"posx.jpg\",\n\t\"https://i.imgur.com/lwrlr6P.jpg\", // \"negx.jpg\", \n\t\"https://i.imgur.com/kKUKBJg.jpg\", // \"posy.jpg\", \n\t\"https://i.imgur.com/N0oZlJR.jpg\", // \"negy.jpg\", \n\t\"https://i.imgur.com/x9q8z0K.jpg\", // \"posz.jpg\", \n\t\"https://i.imgur.com/HYcK7Ii.jpg\", // \"negz.jpg\"\n]);\n\nfunction sceneBackground( urls ){\n\tif (!scene || Number(THREE.REVISION) < 78) return;\n\tvar loader = new THREE.CubeTextureLoader();\n\tloader.load( urls, function(texture){\n\t\ttexture.name = \"BACKGROUND\";\n\t\tscene.background = texture;\n\t\tscene.background.needsUpdate = true;\n\t});\n}\n"
+			}],
+		"F65CF23F-D191-4B9C-B53C-09ED7768195E": [
+			{
+				"name": "octree.js",
+				"source": "scene.remove( this );\n\nworld = new MW.World();\n\n//  OCTREE.\n\nvar partition = 1;\nvar min = new THREE.Vector3( -5000, -1000, -5000 );\nvar max = new THREE.Vector3(  5000,  1000,  5000 );\n\noctree = new MW.Octree( min, max, partition );\n\nworld.add( octree );\n\n//\tUPDATE.\n\nvar clock = new THREE.Clock(); // important!\n\nfunction update(){\n\n\tvar delta = clock.getDelta();\n\tworld.step( delta );\n\n}\n"
+			},
+			{
+				"name": "helpers.js",
+				"source": "var octMeshHelpers = [];\nvar octEdgesHelpers = [];\n\nfunction octreeHelpers( octree ){\n\tvar nodeIndex = octree.nodes.length - 1;\n\tvar node = octree.nodes[ nodeIndex ][0];\n\tvar x = node.max.x - node.min.x;\n\tvar y = node.max.y - node.min.y;\n\tvar z = node.max.z - node.min.z;\n\tvar geometry = new THREE.BoxGeometry(x, y, z);\n\tvar material = new THREE.MeshBasicMaterial({visible:false});\n\n\toctree.nodes[ nodeIndex ].forEach(function(node){\n\n\t\tvar x = node.max.x - node.min.x;\n\t\tvar y = node.max.y - node.min.y;\n\t\tvar z = node.max.z - node.min.z;\n\n\t\tvar mesh = new THREE.Mesh(geometry, material);\n\t\tvar helper = new THREE.EdgesHelper( mesh, 0xffff00 );\n\n\t\tmesh.position.set(\n\t\t\tnode.min.x + (x/2),\n\t\t\tnode.min.y + (y/2),\n\t\t\tnode.min.z + (z/2)\n\t\t);\n\n\t\t//  scene.add( mesh );\n\t\tscene.add( mesh, helper );\n\n\t\toctMeshHelpers.push(mesh);\n\t\toctEdgesHelpers.push(helper);\n\t});\n}\n\nfunction octreeNodeHelper( node ){\n\tvar x = node.max.x - node.min.x;\n\tvar y = node.max.y - node.min.y;\n\tvar z = node.max.z - node.min.z;\n\tvar geometry = new THREE.BoxGeometry(x, y, z);\n\tvar material = new THREE.MeshBasicMaterial({visible:false});\n\tvar mesh = new THREE.Mesh(geometry, material);\n\tmesh.position.set(\n\t\tnode.min.x + (x/2),\n\t\tnode.min.y + (y/2),\n\t\tnode.min.z + (z/2)\n\t);\n\tscene.add( mesh );\n\toctMeshHelpers.push(mesh);\n\tvar helper = new THREE.EdgesHelper( mesh, 0xffff00 );\n\thelper.name = \"octree helper\";\n\tscene.add( helper );\n\toctEdgesHelpers.push(helper);\n}\n\n//  Remove octree mesh helpers.\n\nfunction removeOctreeHelpers(){\n\toctMeshHelpers.forEach( function( item, i ){\n\t\tscene.remove( octMeshHelpers[i] );\n\t\tvar geometry = octMeshHelpers[i].geometry;\n\t\tvar material = octMeshHelpers[i].material;\n\t\tgeometry.dispose();\n\t\tmaterial.dispose();\n\t});\n\tconsole.log( \"octree mesh helpers has been removed.\" );\n}\n"
 			}]
 	},
 	"camera": {
@@ -45,7 +54,7 @@
 			"near": 0.1,
 			"far": 10000,
 			"focus": 10,
-			"aspect": 1.9213349225268177,
+			"aspect": 1.848623853211009,
 			"filmGauge": 35,
 			"filmOffset": 0
 		}
@@ -66,6 +75,13 @@
 					"uuid": "5E90B25E-FD80-4DD9-910F-ADFE7535F7E1",
 					"type": "Object3D",
 					"name": "Background",
+					"visible": false,
+					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]
+				},
+				{
+					"uuid": "F65CF23F-D191-4B9C-B53C-09ED7768195E",
+					"type": "Object3D",
+					"name": "World Octree",
 					"visible": false,
 					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]
 				}]
