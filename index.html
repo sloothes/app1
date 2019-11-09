@@ -220,5 +220,35 @@
 			}
 
 		</script>
+
+		<script>
+
+		//  Socketcluster (SCC).
+
+			var socket = socketCluster.create({
+			//  port:443,
+				hostname: "anywhere3d.com",
+				codecEngine: scCodecMinBin,
+			});
+
+
+			socket.on("connect", function(status){
+				debugMode && console.log({"socket status": status});
+			});
+
+			socket.on("error", function (err) {
+				console.error( err.stack );
+			});
+
+			socket.on("authStateChange", function( state ){
+				debugMode && console.log({"scene authStateChange": state});
+			});
+
+			socket.on("subscribe", function( name, object ){
+				debugMode && console.log("subscribed successfully to channel:", object );
+			});
+
+
+		</script>
 	</body>
 </html>
