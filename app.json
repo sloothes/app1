@@ -13,7 +13,13 @@
 	"stylesheets": [],
 	"javascripts": [],
 	"images": [],
-	"scripts": {},
+	"scripts": {
+		"51901104-FADB-43D1-B2A3-15BDFA72A48D": [
+			{
+				"name": "socket.js",
+				"source": "socket = socketCluster.create({\n//  port:443,\n\thostname: \"anywhere3d.com\",\n\tcodecEngine: scCodecMinBin,\n});\n\n\nsocket.on(\"connect\", function(status){\n\tdebugMode && console.log({\"socket status\": status});\n});\n\nsocket.on(\"error\", function (err) {\n\tconsole.error( err.stack );\n});\n\nsocket.on(\"authStateChange\", function( state ){\n\tdebugMode && console.log({\"scene authStateChange\": state});\n});\n\nsocket.on(\"subscribe\", function( name, object ){\n\tdebugMode && console.log(\"subscribed successfully to channel:\", object );\n});\n"
+			}]
+	},
 	"camera": {
 		"metadata": {
 			"version": 4.4,
