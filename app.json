@@ -61,6 +61,10 @@
 			{
 				"name": "side-panel-ui.js",
 				"source": "scene.remove( this );\n\nsidePanel = new SidePanelUI();\n\nsidePanel.addEventListener( \"mouseenter\", function(){\n\tthis.classList.toggle( \"pinned\", true );\n\tthis.style[\"-webkit-transform\"] = \"translateX( 0 )\";\n});\n\nsidePanel.addEventListener( \"mouseleave\", function(){\n\tthis.classList.toggle( \"pinned\", false );\n\tthis.style[\"-webkit-transform\"] = \"translateX( 340px )\";\n});\n\nplayer.dom.appendChild( sidePanel );\n\n\nfunction toggleSidePanel( button ){\n\n\tbutton.pinned = !button.pinned;\n\tbutton.classList.toggle( \"pinned\", button.pinned );\n\tbutton.parentElement.classList.toggle( \"pinned\", button.pinned );\n\n\tif ( button.pinned ) \n\t\tsidePanel.dispatchEvent( new Event(\"mouseenter\") );\n\telse\n\t\tsidePanel.dispatchEvent( new Event(\"mouseleave\") );\n\n};\n\nfunction SidePanelUI(){\n\n//\tattributes.\n\n\tvar container = document.createElement(\"div\");\n\tcontainer.id = \"right-side\";\n\tcontainer.classList.add(\"side-panel\");\n\n//\tcss style.\n\n\tcontainer.style.ccsText = \"position:absolute;top:0;right:0;bottom:0;width:300px;color:#eee;background:rgba(0,0,0,0.4); \"\n\t\t\t\t\t\t\t+ \"-webkit-transform:translateX( 340px ); -webkit-transition:-webkit-transform 500ms ease-out;\";\n\n\treturn container;\n\n};\n"
+			},
+			{
+				"name": "",
+				"source": "var container = document.createElement(\"div\");\ncontainer.id = \"right-side-content\";\ncontainer.style.cssText = \"position:absolute;top:40px;left:40px;bottom:20px;right:20px;overflow-x:hidden;\";\n\nvar navContainer = document.createElement(\"div\");\nnavContainer.id = \"rightside-navpill-bar\";\nnavContainer.classList.add(\"side-holder\");\nnavContainer.style.cssText = \"margin-bottom:20px;\";\ncontainer.appendChild( navContainer );\n\nvar tabContainer = document.createElement(\"div\");\ntabContainer.id = \"right-side-panel\";\ntabContainer.classList.add(\"tab-content\");\ncontainer.appendChild( tabContainer );\n\nvar pillContainer = document.createElement(\"ul\");\npillContainer.id = \"nav-pill-tabs\";\npillContainer.classList.add(\"nav\",\"nav-tabs\",\"nav-pills\");\npillContainer.style.cssText = \"display:inline-flex!important;overflow-y:hidden;max-width:300px;scroll-behavior:smooth;\";\nnavContainer.appendChild( pillContainer );\n\n/*\nfunction TabUI(id){\n\n\tvar container = document.createElement(\"li\");\n\tcontainer.id = id; // important!\n\tcontainer.classList.add(\"component-pane\",\"tab-pane\",\"fade\");\n\n\treturn container;\n};\n\nfunction PillUI(id, label){\n\n\tvar container = document.createElement(\"li\");\n\tcontainer.setAttribute(\"role\", \"presentation\");\n\tcontainer.style.display = \"inline-block\";\n\n\tvar pill = document.createElement(\"a\");\n\tpill.href = \"#\" + id; // important\n\tpill.setAttribute(\"data-toggle\", \"pill\");\n\tpill.classList.add(\"pills\",\"right-pill\",\"right-pill-avatar\");\n\tpill.textContent = label;\n\tcontainer.appendChild( pill );\n\n\treturn container;\n}\n*/"
 			}]
 	},
 	"camera": {
@@ -70,10 +74,10 @@
 			"generator": "Object3D.toJSON"
 		},
 		"object": {
-			"uuid": "E0E4EEA7-3FC9-4583-8FB7-828DE272B2F7",
+			"uuid": "D2B8B6B5-DE36-4612-BAA1-E2C6963669E2",
 			"type": "PerspectiveCamera",
 			"name": "Camera",
-			"matrix": [0.8604715466499329,2.679553467999085e-9,0.5094984769821167,0,0.18416503071784973,0.9323863387107849,-0.31102895736694336,0,-0.4750494062900543,0.36146336793899536,0.8022919297218323,0,-14.368545532226562,12.035295486450195,24.171113967895508,1],
+			"matrix": [-0.544282078742981,1.4862699959650172e-9,0.8389022350311279,0,0.20707248151302338,0.9690569043159485,0.13434919714927673,0,-0.8129439949989319,0.24683743715286255,-0.5274403095245361,0,-25.267362594604492,9.62251091003418,-14.069971084594727,1],
 			"fov": 50,
 			"zoom": 1,
 			"near": 0.1,
