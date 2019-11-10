@@ -60,7 +60,7 @@
 		"19C8F381-5EDF-4D56-B964-A1212AA32D85": [
 			{
 				"name": "side-panel-ui.js",
-				"source": "scene.remove( this );\n\nsidePanel = new SidePanelUI();\n\nsidePanel.addEventListener( \"mouseenter\", function(){\n\tthis.classList.toggle( \"pinned\", true );\n\tthis.style[\"-webkit-transform\"] = \"translateX( 0 )\";\n});\n\nsidePanel.addEventListener( \"mouseleave\", function(){\n\tthis.classList.toggle( \"pinned\", false );\n\tthis.style[\"-webkit-transform\"] = \"translateX( 340px )\";\n});\n\nplayer.appendChild( sidePanel );\n\n\nfunction toggleSidePanel( button ){\n\n\tbutton.pinned = !button.pinned;\n\tbutton.classList.toggle( \"pinned\", button.pinned );\n\tbutton.parentElement.classList.toggle( \"pinned\", button.pinned );\n\n\tif ( button.pinned ) \n\t\tsidePanel.dispatchEvent( new Event(\"mouseenter\") );\n\telse\n\t\tsidePanel.dispatchEvent( new Event(\"mouseleave\") );\n\n};\n\nfunction SidePanelUI(){\n\n//\tattributes.\n\n\tvar container = document.createElement(\"div\");\n\tcontainer.id = \"right-side\";\n\tcontainer.classList.add(\"side-panel\");\n\n//\tcss style.\n\n\tcontainer.style.ccsText = \"position:absolute;top:0;right:0;bottom:0;width:300px;color:#eee;background:rgba(0,0,0,0.4); \"\n\t\t\t\t\t\t\t+ \"-webkit-transform:translateX( 340px ); -webkit-transition:-webkit-transform 500ms ease-out;\";\n\n\treturn container;\n\n};\n"
+				"source": "scene.remove( this );\n\nsidePanel = new SidePanelUI();\n\nsidePanel.addEventListener( \"mouseenter\", function(){\n\tthis.classList.toggle( \"pinned\", true );\n\tthis.style[\"-webkit-transform\"] = \"translateX( 0 )\";\n});\n\nsidePanel.addEventListener( \"mouseleave\", function(){\n\tthis.classList.toggle( \"pinned\", false );\n\tthis.style[\"-webkit-transform\"] = \"translateX( 340px )\";\n});\n\nplayer.dom.appendChild( sidePanel );\n\n\nfunction toggleSidePanel( button ){\n\n\tbutton.pinned = !button.pinned;\n\tbutton.classList.toggle( \"pinned\", button.pinned );\n\tbutton.parentElement.classList.toggle( \"pinned\", button.pinned );\n\n\tif ( button.pinned ) \n\t\tsidePanel.dispatchEvent( new Event(\"mouseenter\") );\n\telse\n\t\tsidePanel.dispatchEvent( new Event(\"mouseleave\") );\n\n};\n\nfunction SidePanelUI(){\n\n//\tattributes.\n\n\tvar container = document.createElement(\"div\");\n\tcontainer.id = \"right-side\";\n\tcontainer.classList.add(\"side-panel\");\n\n//\tcss style.\n\n\tcontainer.style.ccsText = \"position:absolute;top:0;right:0;bottom:0;width:300px;color:#eee;background:rgba(0,0,0,0.4); \"\n\t\t\t\t\t\t\t+ \"-webkit-transform:translateX( 340px ); -webkit-transition:-webkit-transform 500ms ease-out;\";\n\n\treturn container;\n\n};\n"
 			}]
 	},
 	"camera": {
@@ -79,7 +79,7 @@
 			"near": 0.1,
 			"far": 10000,
 			"focus": 10,
-			"aspect": 1.9213349225268177,
+			"aspect": 1.848623853211009,
 			"filmGauge": 35,
 			"filmOffset": 0
 		}
