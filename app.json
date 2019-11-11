@@ -135,6 +135,11 @@
 			{
 				"name": "startup-avatar.js",
 				"source": "setTimeout( function() {\n\n\tif ( config && config.getKey && config.getKey( \"app/avatar\" ) ) {\n\n\t//\tRestore from config.\n\n\t\tvar json = config.getKey( \"app/avatar\" );\n\t\tdebugMode && console.log( \"app/avatar:\", json );\n\n\t//\tRestore avatar slots indexes.\n\n\t\tvar gender = json && json.gender || \"skeleton\";\n\n\t\tswitch ( gender ) {\n\n\t\t\tcase \"male\":\n\t\t\tcase \"female\":\n\t\t\tcase \"shemale\":\n\t\t\tcase \"trans\":\n\t\t\t\tbody[ gender ].index = json.body || 0;\n\t\t\t\teyes[ gender ].index = json.eyes || 0;\n\t\t\t\thairs[ gender ].index = json.hairs || 0;\n\t\t\t\tunderwears[ gender ].index = json.underwears || 0;\n\t\t\t\tstockings[ gender ].index = json.stockings || 0;\n\t\t\t\tcostume[ gender ].index = json.costume || 0;\n\t\t\t\ttrousers[ gender ].index = json.trousers || 0;\n\t\t\t\ttshirt[ gender ].index = json.tshirt || 0;\n\t\t\t\tdress[ gender ].index = json.dress || 0;\n\t\t\t\tshoes[ gender ].index = json.shoes || 0;\n\t\t\tbreak;\n\n\t\t\tcase \"skeleton\":\n\t\t\t\tbody[ gender ].index = json.body || 0; // important!\n\t\t\tbreak;\n\n\t\t\tdefault:\n\t\t\t\tbody[ gender ].index = json.body || 0;\n\t\t\t\teyes[ gender ].index = json.eyes || 0;\n\t\t\tbreak;\n\n\t\t}\n\n\n\t} else {\n\t\n\t//\tInitial avatar outfit.\n\t\tvar gender = \"female\";\n\n\t\tbody.female.index = 0; // hf_skeleton, debug!\n\t\teyes.female.index = 1;\n\t\thairs.female.index = 1;\n\t\tstockings.female.index = 1;\n\t\tunderwears.female.index = 1;\n\t\tshoes.female.index = 1;\n\n\t}\n\n//\tSet gender first.\n\n\tlocalPlayer.outfit.setGender( gender );\n\n//\tAdd outfit slots.\n\n\tvar slots = [ \n\t\tbody, eyes, hairs, stockings, underwears, \n\t\ttshirt, trousers, costume, dress, shoes,\n\t];\n\n\twhile ( slots.length ) {\n\n\t\tvar slot = slots.shift();\n\n\t\tslot[ gender ] && slot[ gender ].getObject && localPlayer.outfit.add( slot[ gender ].getObject() ); \n\n\t}\n\n//\tlocalPlayer.outfit.add( body.skeleton.getObject() );\n\tdebugMode && console.log( \"localPlayer.outfit:\", localPlayer.outfit );\n\n});\n"
+			}],
+		"4305BABD-5686-447E-9542-B6FDBE772990": [
+			{
+				"name": "shadow-light.js",
+				"source": "cameraLight = this;\ncameraLight.position.copy( camera.position );\n\ncameraLight.castShadow = true; // important!\n//\tcameraLight.position.multiplyScalar( 1.5 );\ncameraLight.shadow.mapSize.width  = Math.pow(2, 10); // 2048;\ncameraLight.shadow.mapSize.height = Math.pow(2, 10); // 2048;\n\nvar d = 30;\n\ncameraLight.shadow.camera.left = - d;\ncameraLight.shadow.camera.right = d;\ncameraLight.shadow.camera.top = d;\ncameraLight.shadow.camera.bottom = - d;\ncameraLight.shadow.camera.far = 10000;\n\n//\tTARGET.\n\ncameraLight.target = localPlayer.outfit.direction; // important!\n\n//  HELPER.\n\nshadowCameraHelper = new THREE.CameraHelper( cameraLight.shadow.camera );\nshadowCameraHelper.visible = false;\nscene.add( shadowCameraHelper );\n\nfunction update(){\n\n\tcameraLight.position.x = camera.position.x;\n\tcameraLight.position.y = camera.position.y;\n\tcameraLight.position.z = camera.position.z;\n\n\tshadowCameraHelper.update();\n\n}\n"
 			}]
 	},
 	"camera": {
@@ -203,6 +208,14 @@
 					"name": "Local Player",
 					"visible": false,
 					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]
+				},
+				{
+					"uuid": "4305BABD-5686-447E-9542-B6FDBE772990",
+					"type": "DirectionalLight",
+					"name": "Camera Light",
+					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,5,10,7.5,1],
+					"color": 16777215,
+					"intensity": 1
 				},
 				{
 					"uuid": "16DCB1E2-ADE8-4B1B-9DFB-FB43C608906A",
