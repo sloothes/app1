@@ -143,8 +143,13 @@
 			}],
 		"460CFB1B-1940-4DE9-AA7B-1A9B1B4AA813": [
 			{
-				"name": "",
-				"source": "setTimeout(function(){\n\n\tvar tabsContainer = document.getElementById(\"side-tab-panel\");\n\tvar pillContainer = document.getElementById(\"side-pill-tabs\");\n\n\tvar tab = document.createElement(\"li\");\n\ttab.id = \"avatar-tab\"; // important!\n\ttab.classList.add(\"component-pane\",\"tab-pane\",\"fade\");\n\ttabsContainer.appendChild( tab );\n\n\tvar container = document.createElement(\"li\");\n\tcontainer.setAttribute(\"role\", \"presentation\");\n\tcontainer.style.display = \"inline-block\";\n\n\tvar pill = document.createElement(\"a\");\n\tpill.href = \"#\"+tab.id; // important!\n\tpill.setAttribute(\"data-toggle\", \"pill\");\n\tpill.classList.add(\"pills\",\"right-pill\",\"right-pill-avatar\");\n\tpill.textContent = \"Avatar\";\n\tcontainer.appendChild( pill );\n\tpillContainer.appendChild( container );\n\n});\n"
+				"name": "avatar-tab-ui.js",
+				"source": "scene.remove( this );\n\n\nsetTimeout(function(){\n\n\tvar tabsContainer = document.getElementById(\"side-tab-panel\");\n\tvar pillContainer = document.getElementById(\"side-pill-tabs\");\n\n\tvar tab = document.createElement(\"li\");\n\ttab.id = \"avatar-tab\"; // important!\n\ttab.classList.add(\"component-pane\",\"tab-pane\",\"fade\");\n\ttabsContainer.appendChild( tab );\n\n\tvar container = document.createElement(\"li\");\n\tcontainer.setAttribute(\"role\", \"presentation\");\n\tcontainer.style.display = \"inline-block\";\n\n\tvar pill = document.createElement(\"a\");\n\tpill.href = \"#\"+tab.id; // important!\n\tpill.setAttribute(\"data-toggle\", \"pill\");\n\tpill.classList.add(\"pills\",\"right-pill\",\"right-pill-avatar\");\n\tpill.textContent = \"Avatar\";\n\tcontainer.appendChild( pill );\n\tpillContainer.appendChild( container );\n\n});\n"
+			}],
+		"B2DEE21F-38BF-4616-AA92-B05858F72DA8": [
+			{
+				"name": "chat-tab-ui.js",
+				"source": "scene.remove( this );\n\n\nsetTimeout(function(){\n\n\tvar tabsContainer = document.getElementById(\"side-tab-panel\");\n\tvar pillContainer = document.getElementById(\"side-pill-tabs\");\n\n\tvar tab = document.createElement(\"li\");\n\ttab.id = \"chat-tab\"; // important!\n\ttab.classList.add(\"component-pane\",\"tab-pane\",\"fade\");\n\ttabsContainer.appendChild( tab );\n\n\tvar container = document.createElement(\"li\");\n\tcontainer.setAttribute(\"role\", \"presentation\");\n\tcontainer.style.display = \"inline-block\";\n\n\tvar pill = document.createElement(\"a\");\n\tpill.href = \"#\"+tab.id; // important!\n\tpill.setAttribute(\"data-toggle\", \"pill\");\n\tpill.classList.add(\"pills\",\"right-pill\",\"right-pill-avatar\");\n\tpill.textContent = \"Chat\";\n\tcontainer.appendChild( pill );\n\tpillContainer.appendChild( container );\n\n});\n"
 			}]
 	},
 	"camera": {
@@ -282,6 +287,13 @@
 					"uuid": "460CFB1B-1940-4DE9-AA7B-1A9B1B4AA813",
 					"type": "Object3D",
 					"name": "Avatar Tab",
+					"visible": false,
+					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]
+				},
+				{
+					"uuid": "B2DEE21F-38BF-4616-AA92-B05858F72DA8",
+					"type": "Object3D",
+					"name": "Chat Tab",
 					"visible": false,
 					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]
 				}]
