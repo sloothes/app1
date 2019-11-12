@@ -191,7 +191,7 @@
 		"4305BABD-5686-447E-9542-B6FDBE772990": [
 			{
 				"name": "shadow-light.js",
-				"source": "cameraLight = this;\ncameraLight.position.copy( camera.position );\n\ncameraLight.castShadow = true; // important!\n//\tcameraLight.position.multiplyScalar( 1.5 );\ncameraLight.shadow.mapSize.width  = Math.pow(2, 10); // 2048;\ncameraLight.shadow.mapSize.height = Math.pow(2, 10); // 2048;\n\nvar d = 30;\n\ncameraLight.shadow.camera.left = - d;\ncameraLight.shadow.camera.right = d;\ncameraLight.shadow.camera.top = d;\ncameraLight.shadow.camera.bottom = - d;\ncameraLight.shadow.camera.far = 10000;\n\n//\tTARGET.\n\ncameraLight.target = localPlayer.outfit.direction; // important!\n\n//  HELPER.\n\nshadowCameraHelper = new THREE.CameraHelper( cameraLight.shadow.camera );\nshadowCameraHelper.visible = false;\nscene.add( shadowCameraHelper );\n\nfunction update(){\n\n\tcameraLight.position.x = camera.position.x;\n\tcameraLight.position.y = camera.position.y;\n\tcameraLight.position.z = camera.position.z;\n\n\tshadowCameraHelper.update();\n\n}\n"
+				"source": "cameraLight = this;\ncameraLight.position.copy( camera.position );\n\ncameraLight.castShadow = true; // important!\n//\tcameraLight.position.multiplyScalar( 1.5 );\ncameraLight.shadow.mapSize.width  = Math.pow(2, 10); // 2048;\ncameraLight.shadow.mapSize.height = Math.pow(2, 10); // 2048;\n\nvar d = 30;\n\ncameraLight.shadow.camera.left = - d;\ncameraLight.shadow.camera.right = d;\ncameraLight.shadow.camera.top = d;\ncameraLight.shadow.camera.bottom = - d;\ncameraLight.shadow.camera.far = 10000;\n\n//\tTARGET.\n\ncameraLight.target = localPlayer.outfit.direction; // important!\n\n//  HELPER.\n\nshadowCameraHelper = new THREE.CameraHelper( cameraLight.shadow.camera );\nshadowCameraHelper.visible = false;\nscene.add( shadowCameraHelper );\n\nfunction update(){\n\n//\tcameraLight.position.x = camera.position.x;\n//\tcameraLight.position.y = camera.position.y;\n//\tcameraLight.position.z = camera.position.z;\n\tcameraLight.position.copy( camera.position.multiplyScalar(20) );\n\n\tshadowCameraHelper.update();\n\n}\n"
 			}],
 		"460CFB1B-1940-4DE9-AA7B-1A9B1B4AA813": [
 			{
@@ -385,13 +385,13 @@
 			"uuid": "D2B8B6B5-DE36-4612-BAA1-E2C6963669E2",
 			"type": "PerspectiveCamera",
 			"name": "Camera",
-			"matrix": [0.9995495080947876,3.16242032560865e-11,-0.030012886971235275,0,-0.016003219410777092,0.8459818959236145,-0.5329713821411133,0,0.02539036050438881,0.5332115888595581,0.8456007838249207,0,0.7525871396064758,15.8047456741333,25.064170837402344,1],
+			"matrix": [-0.5331940650939941,6.51936671314246e-10,0.8459929823875427,0,0.2800469994544983,0.9436210989952087,0.17650192975997925,0,-0.7982968091964722,0.3310275673866272,-0.5031331777572632,0,-23.66204833984375,9.811877250671387,-14.913200378417969,1],
 			"fov": 50,
 			"zoom": 1,
 			"near": 0.1,
 			"far": 10000,
 			"focus": 10,
-			"aspect": 1.9586877278250303,
+			"aspect": 1.848623853211009,
 			"filmGauge": 35,
 			"filmOffset": 0
 		}
@@ -419,6 +419,7 @@
 					"uuid": "CC77B852-B149-497B-B466-ED2E6D843109",
 					"type": "Object3D",
 					"name": "Geometries (array)",
+					"visible": false,
 					"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]
 				},
 				{
