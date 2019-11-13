@@ -177,7 +177,7 @@
 			},
 			{
 				"name": "textures-loader.js",
-				"source": "const clientID = \"06217f601180652\";\nconst secretID = \"05aff99729a690cfc0dbcba7855efbda28d6b751\";\nconst endpoint = \"https://api.imgur.com/3/image/\"\n\nvar IDS = [\n//\tskin (male)...\n\t\"4h9rLSg\", \"mAZgsw8\",\n//\tskin (female)...\n\t\"jc8chBX\", \"pRYCYkb\",\n//\teyes...\n\t\"Si5QWl0\", \"VybEXWo\",\n//\thairs...\n\n//\tunderwears...\n\n//\tstockings...\n\n//\tcostume...\n\n//\tdress...\n\n//\ttshirt...\n\n//\ttrousers...\n\n//\tshoes...\n\n];\n\nwhile ( IDS.length ) {\n\n\tvar xhttp = new XMLHttpRequest();\n\tvar endpoint = endpoint + \"/\" + IDS.shift();\n\txhttp.open(\"GET\", endpoint, true);\n\txhttp.setRequestHeader(\"Authorization\", \"Client-ID \" + clientID);\n\txhttp.onreadystatechange = function() {\n\t\tif (this.readyState === 4) {\n\t\t\tvar response = \"\";\n\t\t\tif (this.status >= 200 && this.status < 300) {\n\t\t\t\tresponse = JSON.parse(this.responseText);\n\t\t\t\tdebugMode && console.log(response);\n\t\t\t//\tcallback(response.data); // get image.\n\t\t\t} else {\n\t\t\t\tvar err = JSON.parse(this.responseText).data.error;\n\t\t\t\tconsole.error( err.type, err );\n\t\t\t}\n\t\t}\n\t};\n\n\txhttp.send();\n\txhttp = null;\n\n}\n\nfunction callback( data ){\n\n\tvar url = data.link;\n\tvar loader = new THREE.TextureLoader();\n\tloader.setCrossOrigin(\"\"); // important!\n\tvar texture = loader.load( url, function( texture ){\n\t\tImages.push( texture.image );\n\t});\n\n\ttexture.name = data.name;\n\ttexture.sourceFile = data.link;\n\tTextures.push( texture );\n\n}\n"
+				"source": "const clientID = \"06217f601180652\";\nconst secretID = \"05aff99729a690cfc0dbcba7855efbda28d6b751\";\nconst endpoint = \"https://api.imgur.com/3/image/\"\n\nvar IDS = [\n//\tskin (male)...\n\t\"4h9rLSg\", \"mAZgsw8\",\n//\tskin (female)...\n\t\"jc8chBX\", \"pRYCYkb\",\n//\teyes...\n\t\"Si5QWl0\", \"VybEXWo\",\n//\thairs...\n\n//\tunderwears...\n\n//\tstockings...\n\n//\tcostume...\n\n//\tdress...\n\n//\ttshirt...\n\n//\ttrousers...\n\n//\tshoes...\n\n];\n\nwhile ( IDS.length ) {\n\n\tvar xhttp = new XMLHttpRequest();\n\tvar url = endpoint + \"/\" + IDS.shift();\n\txhttp.open(\"GET\", url, true);\n\txhttp.setRequestHeader(\"Authorization\", \"Client-ID \" + clientID);\n\txhttp.onreadystatechange = function() {\n\t\tif (this.readyState === 4) {\n\t\t\tvar response = \"\";\n\t\t\tif (this.status >= 200 && this.status < 300) {\n\t\t\t\tresponse = JSON.parse(this.responseText);\n\t\t\t\tdebugMode && console.log(response);\n\t\t\t//\tcallback(response.data); // get image.\n\t\t\t} else {\n\t\t\t\tvar err = JSON.parse(this.responseText).data.error;\n\t\t\t\tconsole.error( err.type, err );\n\t\t\t}\n\t\t}\n\t};\n\n\txhttp.send();\n\txhttp = null;\n\n}\n\nfunction callback( data ){\n\n\tvar url = data.link;\n\tvar loader = new THREE.TextureLoader();\n\tloader.setCrossOrigin(\"\"); // important!\n\tvar texture = loader.load( url, function( texture ){\n\t\tImages.push( texture.image );\n\t});\n\n\ttexture.name = data.name;\n\ttexture.sourceFile = data.link;\n\tTextures.push( texture );\n\n}\n"
 			}],
 		"CD280B3D-D056-41EF-BE85-1CAAA1A06911": [
 			{
@@ -454,7 +454,7 @@
 			"near": 0.1,
 			"far": 10000,
 			"focus": 10,
-			"aspect": 1.848623853211009,
+			"aspect": 1.9586877278250303,
 			"filmGauge": 35,
 			"filmOffset": 0
 		}
