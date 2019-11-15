@@ -458,7 +458,7 @@
 			},
 			{
 				"name": "submit-map-ui.js",
-				"source": "setTimeout(function(){\n\n\tvar tab = document.getElementById(\"textures-tab\");\n\n\ttab.appendChild( new SubmitMap() );\n\n});\n\nfunction SubmitMap(){\n\n\tvar interval;\n\n\tvar row = document.createElement(\"div\");\n\trow.style.cssText = \"margin:30px 30px;min-height:35px;text-align:center;\";\n\n\tvar button = document.createElement(\"div\");\n\tbutton.textContent = \"Submit\";\n\tbutton.style.cssText = \"width:100%;height:40px;font-size:large;\";\n\tbutton.classList.add( \"form-control\", \"btn\", \"btn-success\", \"btn-white-outline\", \"gradient-btn\" );\n\n\tbutton.addEventListener( \"click\", function submit(){\n\t\tbutton.removeEventListener( \"click\", submit );\n\n\t\tvar mapInput = document.getElementById(\"textures-selected-map-ui\");\n\t\tvar textureInput = document.getElementById(\"textures-selected-texture-ui\");\n\t\tvar materialInput = document.getElementById(\"textures-selected-material-ui\");\n\n\t\tvar key = mapInput.value;\n\t\tvar texture = Textures[ textureInput.getIndex() ];\n\t\tvar material = Materials[ materialInput.getIndex() ];\n\n\t//\tDispose old texture.\n\t\tif ( material && material[ key ] ) material[ key ].dispose();\n\t\t\n\t//\tApply selected texture.\n\t\tif ( material && texture ) setTimeout(function(){\n\t\t\tmaterial[ key ] = texture;\n\t\t//\tUpdate material, important!\n\t\t\tmaterial.needsUpdate = true;\n\t\t\tmaterial[ key ].needsUpdate = true;\n\t\t});\n\n\t//\tRestore event listener, important!\n\t\tbutton.addEventListener( \"click\", submit );\n\n\t});\n\n\trow.appendChild( button );\n\n\treturn row;\n\n}\n"
+				"source": "setTimeout(function(){\n\n\tvar tab = document.getElementById(\"textures-tab\");\n\n\ttab.appendChild( new ApplyMap() );\n\n});\n\nfunction ApplyMap(){\n\n\tvar interval;\n\n\tvar row = document.createElement(\"div\");\n\trow.style.cssText = \"margin:30px 30px;min-height:35px;text-align:center;\";\n\n\tvar button = document.createElement(\"div\");\n\tbutton.textContent = \"Apply\";\n\tbutton.style.cssText = \"width:100%;height:40px;font-size:large;\";\n\tbutton.classList.add( \"form-control\", \"btn\", \"btn-success\", \"btn-white-outline\", \"gradient-btn\" );\n\n\tbutton.addEventListener( \"click\", function submit(){\n\t\tbutton.removeEventListener( \"click\", submit );\n\n\t\tvar mapInput = document.getElementById(\"textures-selected-map-ui\");\n\t\tvar textureInput = document.getElementById(\"textures-selected-texture-ui\");\n\t\tvar materialInput = document.getElementById(\"textures-selected-material-ui\");\n\n\t\tvar key = mapInput.value;\n\t\tvar texture = Textures[ textureInput.getIndex() ];\n\t\tvar material = Materials[ materialInput.getIndex() ];\n\n\t//\tDispose old texture.\n\t\tif ( material && material[ key ] ) material[ key ].dispose();\n\t\t\n\t//\tApply selected texture.\n\t\tif ( material && texture ) setTimeout(function(){\n\t\t\tmaterial[ key ] = texture;\n\t\t//\tUpdate material, important!\n\t\t\tmaterial.needsUpdate = true;\n\t\t\tmaterial[ key ].needsUpdate = true;\n\t\t});\n\n\t//\tRestore event listener, important!\n\t\tbutton.addEventListener( \"click\", submit );\n\n\t});\n\n\trow.appendChild( button );\n\n\treturn row;\n\n}\n"
 			},
 			{
 				"name": "remove-map-ui.js",
@@ -490,7 +490,7 @@
 			"near": 0.1,
 			"far": 10000,
 			"focus": 10,
-			"aspect": 1.9213349225268177,
+			"aspect": 1.848623853211009,
 			"filmGauge": 35,
 			"filmOffset": 0
 		}
