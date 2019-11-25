@@ -198,7 +198,7 @@ var APP = {
 
 				var script = new Function( arguments[ i ] ); 
 				script.bind( window ).call(); // bind and execute script.
-				debugMode && console.log("Library", script.toString(), "executed.");
+			//	debugMode && console.log("Library", script.toString(), "executed.");
 
 			}
 
